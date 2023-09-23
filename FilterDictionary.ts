@@ -20,14 +20,14 @@ export class FilterDictionary<TKey extends string | number, TValue>{
     public toFilterRequest() : Array<FieldFilterRequestResource>{
         return this.toArray().map(([key, value]) => {
             return new FieldFilterRequestResource({
-              fieldName: `taxonomy_items.${key}.*`,
+              fieldName: `taxonomy_items.${key}.children`,
               values: value,
               nestedValues: [],
-              operator: FilterOperator.AnyOf,
+              operator: FilterOperator.FacetEquals,
               visible: true,
-              hidden: true,
-              multiSelect: true,
-              filterType: RequestedFilterType.InFilter,
+              hidden: false,
+              multiSelect: false,
+              filterType: RequestedFilterType.FieldFilter,
             });
           });
     }
