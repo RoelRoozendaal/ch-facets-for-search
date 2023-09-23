@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test Page</title>
+</head>
+<body>
+    <div id="app"></div>
+    <div id="myElement">.</div>
+    <script type="module">
+        import createExternalRoot from '/src/components/mb-department-facets-for-search/index.tsx';
+
+
+        const rootElement = document.querySelector("#app");
+        const component = createExternalRoot(rootElement);
+        const mockContext = {
+            config: {
+                hideFilters : {
+                    'RVR29' : [ "Asset Branch"]
+                },
+                applyFilters : {
+                    "RVR29": [{ "filterName": "RVR.Branch",
+                                "values": ["Rvr.Branch.Demo"]
+                            }]
+                }
+            },
+            user: {
+                userGroups : ["RVR.AssetManager.RVR29"]
+            }
+        };
+
+        component.render(mockContext);
+    </script>
+</body>
+</html>
